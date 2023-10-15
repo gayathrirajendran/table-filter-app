@@ -1,1 +1,32 @@
-<p>custom-filter works!</p>
+<button class="btn btn-secondary" type="button" (click)="addFilter()">
+  Add new filter
+</button>
+<form [formGroup]="filterFormGroup" (ngSubmit)="filterChange.emit(filterFormGroup.value.filters)">
+  <ng-container formArrayName="filters" *ngIf="filterForm.length">
+    <ng-container *ngFor="let group of filterForm.controls; let index = index">
+      <div class="d-flex" [formGroup]="group">
+        <div>
+          <!-- {{ filterConfig | json }} -->
+          <select formControlName="columnName">
+            <option>Select a column</option>
+            <option *ngFor="let item of filterConfig">{{ item.id }}</option>
+          </select>
+
+          <select formControlName="operator">
+            <option *ngFor="let operator of operators">{{ operator }}</option>
+          </select>
+
+          <input
+            type="text"
+            formControlName="searchText"
+            placeholder="Search for text like Mark..."
+          />
+        </div>
+        <div>
+            <button type="button" (click)="deleteFilter(index)">Delete filter</button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <button *ngIf="filterForm?.length" type="submit" class="btn btn-primary">Filter table</button>
+</form>

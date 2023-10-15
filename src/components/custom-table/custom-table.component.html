@@ -1,1 +1,47 @@
-<p>custom-table works!</p>
+<div class="table-responsive">
+  <table
+    class="table table-bordered table-hover"
+    *ngIf="cellLookup && !dataError"
+  >
+    <thead *ngIf="headerLookup">
+      <tr>
+        <th *ngFor="let columnDef of configuration?.columnDefinition">
+          <ng-container
+            *ngTemplateOutlet="headerLookup[columnDef.id].ref"
+          ></ng-container>
+        </th>
+      </tr>
+    </thead>
+    <ng-container *ngIf="data$ | async as data; else loading">
+      <tbody>
+        <tr *ngFor="let rowData of data; let ind = index">
+          <td *ngFor="let columnDef of configuration?.columnDefinition">
+            <ng-container
+              *ngTemplateOutlet="
+                cellLookup[columnDef.id].ref;
+                context: { $implicit: rowData }
+              "
+            ></ng-container>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">{{ data.length }} records available</td>
+        </tr>
+      </tfoot>
+    </ng-container>
+  </table>
+</div>
+
+<div *ngIf="dataError">
+  <div class="col-12 text-center">
+    <div class="alert alert-danger">
+      {{ dataError.message }}
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="col-12 text-center">Loading ...</div>
+</ng-template>

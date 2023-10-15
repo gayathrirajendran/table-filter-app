@@ -1,0 +1,49 @@
+<div class="py-4">
+  <app-layout>
+    <ng-container main-panel>
+      <app-custom-table
+        [dataSource]="dataService.getTableData()"
+        [filterSource]="dataService.getFilteredData(filters)"
+        [configuration]="configuration"
+      >
+        <ng-template let-data columnHeader="id">
+          <div>Identifier</div>
+        </ng-template>
+
+        <ng-template let-data columnHeader="name">
+          <div>Name</div>
+        </ng-template>
+
+        <ng-template let-data columnHeader="desc">
+          <div>Description</div>
+        </ng-template>
+
+        <ng-template let-data columnHeader="price">
+          <div>Price</div>
+        </ng-template>
+
+        <ng-template let-data columnCell="id">
+          <div>{{ data.id }}</div>
+        </ng-template>
+
+        <ng-template let-data columnCell="name">
+          <div>{{ data.product_name }}</div>
+        </ng-template>
+
+        <ng-template let-data columnCell="desc">
+          <div>{{ data.product_desc }}</div>
+        </ng-template>
+
+        <ng-template let-data columnCell="price">
+          <div>{{ data.price | currency : data.currency }}</div>
+        </ng-template>
+      </app-custom-table>
+    </ng-container>
+    <ng-container side-panel>
+      <app-custom-filter
+        [filterConfig]="configuration.columnDefinition"
+        (filterChange)="filterData($event)"
+      ></app-custom-filter>
+    </ng-container>
+  </app-layout>
+</div>
