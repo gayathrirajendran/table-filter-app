@@ -54,9 +54,16 @@ export class TableDataService {
   getFilteredData(filters: any[]): Observable<any[]> | undefined {
     if (filters?.length) {
       let resultData: any[] = [...this.originalData];
-      filters?.forEach((filter: ColumnFilterModel) => {        
+      filters?.forEach((filter: ColumnFilterModel) => { 
+        if(columnTypeFieldMap[filter.columnName] === 'string' && filter.operator in [' less than, less than or equal to', 'greater than', 'greater than equal to'])  {
+          throw new Error(
+            `${filter.columnName} Not a number type, please check the configuration/filter choices`
+          );
+        }      
         resultData = resultData.filter((item: any) => {
           console.log(
+            'here specifically',
+            item, filter,
             item[columnNameFieldMap[filter.columnName]],
             // item[columnNameFieldMap[filter.columnName]].includes(
             //   filter.searchText
@@ -64,14 +71,16 @@ export class TableDataService {
             filter.searchText
           );
           let condition;
-          switch (item.type) {
+          switch (columnTypeFieldMap[filter.columnName]) {
             case 'number':
-              switch (item.operator) {
-                case 'equal to':
+              switch (filter.operator) {
+                case 'equal to': {
                   condition =
                     item[columnNameFieldMap[filter.columnName]]?.toString() ===
                     filter.searchText.toString();
+                  console.log('here', item[columnNameFieldMap[filter.columnName]]?.toString(), filter.searchText.toString(), condition);
                   break;
+                }
 
                 case 'not equal to':
                   condition =
@@ -150,7 +159,7 @@ export class TableDataService {
               break;
 
             case 'string':
-              switch (item.operator) {
+              switch (filter.operator) {
                 case 'equal to':
                   condition =
                     item[columnNameFieldMap[filter.columnName]]?.toString() ===
@@ -175,6 +184,9 @@ export class TableDataService {
                   condition = item[columnNameFieldMap[filter.columnName]]
                     ?.toString()
                     .includes(filter.searchText.toString());
+                    if(item[columnNameFieldMap[filter.columnName]] === 'PIOGLITAZONEHYDROCHLORIDE') {
+                      console.log('here', columnNameFieldMap[filter.columnName], filter.searchText);
+                    }
                   break;
 
                 case 'does not contain':
@@ -186,9 +198,7 @@ export class TableDataService {
               break;
           }
 
-          return item[columnNameFieldMap[filter.columnName]].includes(
-            filter.searchText
-          );
+          return condition;
         });
       });
       // console.log(resultData.length);

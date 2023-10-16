@@ -1,29 +1,30 @@
 <button class="btn btn-secondary" type="button" (click)="addFilter()">
   Add new filter
 </button>
-<form [formGroup]="filterFormGroup" (ngSubmit)="filterChange.emit(filterFormGroup.value.filters)">
+<form [formGroup]="filterFormGroup" (ngSubmit)="submitFilter()">
   <ng-container formArrayName="filters" *ngIf="filterForm.length">
     <ng-container *ngFor="let group of filterForm.controls; let index = index">
-      <div class="d-flex" [formGroup]="group">
-        <div>
+      <div class="d-flex justify-content-between" [formGroup]="group">
+        <div class="d-flex flex-column gap-2 form-container form-group py-2">
           <!-- {{ filterConfig | json }} -->
-          <select formControlName="columnName">
+          <select class="w-100 form-select" formControlName="columnName">
             <option>Select a column</option>
             <option *ngFor="let item of filterConfig">{{ item.id }}</option>
           </select>
 
-          <select formControlName="operator">
+          <select class="w-100 form-select" formControlName="operator">
+            <option>Select an operator</option>
             <option *ngFor="let operator of operators">{{ operator }}</option>
           </select>
 
-          <input
+          <input class="w-100 form-control"
             type="text"
             formControlName="searchText"
-            placeholder="Search for text like Mark..."
+            placeholder="Search..."
           />
         </div>
-        <div>
-            <button type="button" (click)="deleteFilter(index)">Delete filter</button>
+        <div class="py-2">
+            <button type="button" class="btn btn-outline-primary" (click)="deleteFilter(index)">Delete filter</button>
         </div>
       </div>
     </ng-container>

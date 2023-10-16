@@ -73,7 +73,7 @@ export class CustomFilterComponent implements OnInit {
 
   getNewFilter(): FormGroup<FilterFormModel> {
     return new FormGroup<FilterFormModel>({
-      columnId: new FormControl('', [Validators.required]),
+      columnId: new FormControl(''),
       columnName: new FormControl('', [Validators.required]),
       operator: new FormControl('', [Validators.required]),
       searchText: new FormControl('', [Validators.required]),
@@ -87,6 +87,18 @@ export class CustomFilterComponent implements OnInit {
 
   deleteFilter(index: any): void {
     this.filterForm.removeAt(index);
-    this.filterChange.emit(this.filterFormGroup.value.filters?.length ? this.filterFormGroup.value.filters : []);
+    this.filterChange.emit(
+      this.filterFormGroup.value.filters?.length
+        ? this.filterFormGroup.value.filters
+        : []
+    );
+  }
+
+  submitFilter(): void {
+    if (!this.filterFormGroup.valid) {
+      this.filterFormGroup.markAllAsTouched();
+    } else {
+      this.filterChange.emit(this.filterFormGroup.value.filters);
+    }
   }
 }
