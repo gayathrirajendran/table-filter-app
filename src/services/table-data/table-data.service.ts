@@ -61,15 +61,6 @@ export class TableDataService {
           );
         }      
         resultData = resultData.filter((item: any) => {
-          console.log(
-            'here specifically',
-            item, filter,
-            item[columnNameFieldMap[filter.columnName]],
-            // item[columnNameFieldMap[filter.columnName]].includes(
-            //   filter.searchText
-            // ),
-            filter.searchText
-          );
           let condition;
           switch (columnTypeFieldMap[filter.columnName]) {
             case 'number':
@@ -78,7 +69,6 @@ export class TableDataService {
                   condition =
                     item[columnNameFieldMap[filter.columnName]]?.toString() ===
                     filter.searchText.toString();
-                  console.log('here', item[columnNameFieldMap[filter.columnName]]?.toString(), filter.searchText.toString(), condition);
                   break;
                 }
 
@@ -184,9 +174,6 @@ export class TableDataService {
                   condition = item[columnNameFieldMap[filter.columnName]]
                     ?.toString()
                     .includes(filter.searchText.toString());
-                    if(item[columnNameFieldMap[filter.columnName]] === 'PIOGLITAZONEHYDROCHLORIDE') {
-                      console.log('here', columnNameFieldMap[filter.columnName], filter.searchText);
-                    }
                   break;
 
                 case 'does not contain':
@@ -201,7 +188,6 @@ export class TableDataService {
           return condition;
         });
       });
-      // console.log(resultData.length);
       return of(resultData);
     } else {
       return undefined;

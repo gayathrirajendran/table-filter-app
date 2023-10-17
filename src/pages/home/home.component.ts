@@ -56,6 +56,5 @@ export class HomeComponent implements OnInit {
 
   filterData(filterValue: any): void {
     this.filters = filterValue;
-    console.log(filterValue, 'filterValueFG')    
   }
 }
