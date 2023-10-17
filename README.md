@@ -64,13 +64,32 @@ File: table_data.json
 User: pupDev 
 Password: pupDev2018
 
-## Design
+## Review notes
 
+### Use of third party dependencies
+- Bootstrap is installed just to achieve minimal layout and visual decorum. 
 
-App, 
-Layout component
- table component
- filter component
+### Open items
+- Test setup
+- Pagination implementation - Approach, if server supports fetch just n number of records at a time and display
+- Have chosen a bare minimum of three properties to achieve the table from the data set.
+- Filter logic may not be exhaustive
+- Data type definition is done 
+
+### Q&A
+
+● Which patterns have been used? 
+- Single Responsibility principle, Open closed principle, Standalone components/directives are created to achieve Composition and Lazy pattern. Can notice Strategy Pattern since technical components and business logic remains separate.
+
+● How easy is it to set up the environment and run your code? 
+- npm install and npm start
+
+● How is your code structured? 
+- As per angular recommendation
+
+● How performant is your code? 
+● Are tests available and how have they been set up? 
+- No, have not been setup due to two reasons. One method that Storybook that am very familiar with, only supports until Angular 15. Couldn't do it the other ways due to other commitments
  
 
 

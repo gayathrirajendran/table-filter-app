@@ -27,7 +27,7 @@ export class TableDataService {
   constructor(private httpClient: HttpClient) {}
 
   getData(): Observable<any> {
-    return this.httpClient.get('/assets/table_data.json');
+    return this.httpClient.get('./assets/table_data.json');
   }
 
   getTableData(): Observable<any> {
