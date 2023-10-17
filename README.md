@@ -66,15 +66,22 @@ Password: pupDev2018
 
 ## Review notes
 
+### Serving the application in dev mode
+Run `ng serve`
+
+### Deploying the application in prod mode
+Run `npm run deploy`
+
 ### Use of third party dependencies
 - Bootstrap is installed just to achieve minimal layout and visual decorum. 
 
 ### Open items
 - Test setup
+- Lint setup
 - Pagination implementation - Approach, if server supports fetch just n number of records at a time and display
 - Have chosen a bare minimum of three properties to achieve the table from the data set.
 - Filter logic may not be exhaustive
-- Data type definition is done 
+- Data type definition is done partially and compromised with use of any
 
 ### Q&A
 
@@ -84,12 +91,9 @@ Password: pupDev2018
 ● How easy is it to set up the environment and run your code? 
 - npm install and npm start
 
-● How is your code structured? 
-- As per angular recommendation
-
-● How performant is your code? 
+● How performant is your code? - Moderately performant, Can monitor performance in the deployed site https://gayathrirajendran.github.io/table-filter-app/
 ● Are tests available and how have they been set up? 
-- No, have not been setup due to two reasons. One method that Storybook that am very familiar with, only supports until Angular 15. Couldn't do it the other ways due to other commitments
+- No, have not been setup due to two reasons. One method is Storybook that am very familiar with, only supports until Angular 15. Couldn't do it the other methods due to time constraints.
  
 
 
