@@ -17,7 +17,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ColumnDefinition, ColumnFilterModel, OPERATOR_TYPES } from 'src/types';
+import { ColumnDefinition, ColumnFilterModel, OPERATOR_TYPES } from '../../types';
 
 interface FilterFormModel {
   columnId: FormControl<string | null>;

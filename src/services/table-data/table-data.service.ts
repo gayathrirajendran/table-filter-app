@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, of } from 'rxjs';
-import { ColumnFilterModel } from 'src/types';
+import { ColumnFilterModel } from '../../types';
 
 const columnNameFieldMap: Record<string, string> = {
   name: 'product_name',
