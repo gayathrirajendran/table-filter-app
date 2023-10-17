@@ -88,12 +88,17 @@ Run `npm run deploy`
 ● Which patterns have been used? 
 - Single Responsibility principle, Open closed principle, Standalone components/directives are created to achieve Composition and Lazy pattern. Can notice Strategy Pattern since technical components and business logic remains separate.
 
-● How easy is it to set up the environment and run your code? 
-- npm install and npm start
+● How easy is it to set up the environment and run your code?
 
-● How performant is your code? - Moderately performant, Can monitor performance in the deployed site https://gayathrirajendran.github.io/table-filter-app/
+Execute `npm install and npm start` and `npm run deploy` for deployment
+
+● How performant is your code?
+
+Moderately performant, Can monitor performance in the deployed site https://gayathrirajendran.github.io/table-filter-app/
+
 ● Are tests available and how have they been set up? 
-- No, have not been setup due to two reasons. One method is Storybook that am very familiar with, only supports until Angular 15. Couldn't do it the other methods due to time constraints.
+
+No, have not been setup due to two reasons. One method is Storybook that am very familiar with, only supports until Angular 15. Couldn't do it the other methods due to time constraints.
  
 
 
